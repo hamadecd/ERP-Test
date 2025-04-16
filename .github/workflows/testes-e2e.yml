@@ -1,0 +1,27 @@
+name: Executar Testes Automatizados
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório da aplicação
+        uses: actions/checkout@v3
+
+      - name: Clonar repositório de testes
+        run: git clone https://github.com/sua-org/test-repo.git
+
+      - name: Instalar dependências dos testes
+        run: |
+          cd test-repo
+          yarn install
+
+      - name: Executar os testes
+        run: |
+          cd test-repo
+          yarn test:e2e # ou o comando que você usa
